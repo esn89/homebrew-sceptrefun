@@ -8,7 +8,6 @@ class Sceptrefun < Formula
         cellar :any_skip_relocation
     end
   
-    depends_on "mplayer"
     depends_on "coreutils"
   
     def install
