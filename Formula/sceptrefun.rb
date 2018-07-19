@@ -8,8 +8,6 @@ class Sceptrefun < Formula
         cellar :any_skip_relocation
     end
   
-    depends_on "mplayer"
-  
     def install
         bin.install "sceptrefun"
         prefix.install "assets"
