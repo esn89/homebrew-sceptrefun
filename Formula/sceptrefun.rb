@@ -14,6 +14,7 @@ class Sceptrefun < Formula
   
     def install
         bin.install "sceptrefun"
+        assets.install "assets/*"
     end
   
     test do
