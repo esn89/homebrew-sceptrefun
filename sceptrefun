@@ -1,6 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-BASEDIR=$(cd "$(dirname "$(dirname "$(greadlink -f $0)")")" && pwd)
+realpath() {
+  python -c "import os,sys; print(os.path.realpath(sys.argv[1]))" "$0"
+}
+
+BASEDIR="$(dirname "$(dirname "$(realpath "$0")")")"
 
 SCEPTRE_SUCCESS="$BASEDIR/assets/war3_jobdone.mp3"
 SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/war3_jobdone.mp3"

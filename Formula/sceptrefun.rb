@@ -9,7 +9,6 @@ class Sceptrefun < Formula
     end
   
     depends_on "mplayer"
-    depends_on "coreutils"
   
     def install
         bin.install "sceptrefun"
