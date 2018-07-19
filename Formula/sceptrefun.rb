@@ -12,7 +12,7 @@ class Sceptrefun < Formula
   
     def install
         bin.install "sceptrefun"
-        prefix.install Dir["assets/*"]
+        prefix.install "assets"
     end
   
     test do
