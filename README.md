@@ -1,22 +1,31 @@
-# Dependencies
-brew install mplayer
+# SceptreFun Project
 
-# How to:
-`cp sceptrefun/sceptrefun /usr/local/bin/` to any place in your $PATH - I used /usr/local/bin
-`cp -r assets/ ~/Downloads/`
-Make sure it is executable:
-`chmod u+x /usr/local/bin/sceptrefun`
+## Dependencies
+
+- `mplayer` - installed automatically by brew
+- `coreutils` - installed automatically by brew
+- `sceptre` - you should have it set up already on your computer
+
+## How to install
+
+Install using Homebrew:
+
+```bash
+brew install esn89/sceptrefun/sceptrefun
+```
+
+## How to use
 
 run like `sceptrefun $action $env $stack`
 add -t, -p, -z for Starcraft sounds
 
-If you trust me to not fuck your sceptre up and want to stop
-typing `sceptrefun` everytime, put this in your ~/.zshrc or
-~/.bashrc:
+If you trust this project and want to stop typing `sceptrefun` everytime, put this in your `~/.zshrc` or `~/.bashrc`:
 
+```bash
 alias `sceptre=/usr/local/bin/sceptrefun`
+```
 
-# More stuff:
+## More stuff
 
 Blizzard said I could use their stuff:
 ![image](https://i.imgur.com/SGXGkkn.png)
