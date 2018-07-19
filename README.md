@@ -27,14 +27,14 @@ sceptrefun $action $env $stack
 
 By default it uses Warcraft sounds, but you can override this behaviour using additional `-t` flag:
 
-- `-t terrain` - for Starcraft Terrain sounds
+- `-t terran` - for Starcraft Terrain sounds
 - `-t protoss` - for Starcraft Protoss sounds
 - `-t zerg` - for Starcraft Zerg sounds
 
 Command with override could look like this:
 
 ```bash
-sceptrefun -t terrain launch-stack dev vpc
+sceptrefun -t terran launch-stack dev vpc
 ```
 
 If you trust this project and want to stop typing `sceptrefun` everytime, put this in your `~/.zshrc` or `~/.bashrc`:
