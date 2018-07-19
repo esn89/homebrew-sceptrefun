@@ -1,4 +1,6 @@
-# SceptreFun Project
+# Sceptrefun Project
+
+This project is a wrapper extension to Cloudreach's `sceptre` tool. It plays different sounds when sceptre operations start, run, fail and when it is complete.
 
 ## Dependencies
 
@@ -16,14 +18,35 @@ brew install esn89/sceptrefun/sceptrefun
 
 ## How to use
 
-run like `sceptrefun $action $env $stack`
-add -t, -p, -z for Starcraft sounds
+Run it the same way you would run `sceptre`:
+
+```bash
+sceptrefun $action $env $stack
+```
+
+By default it uses Warcraft sounds, but you can override this behaviour using additional flags:
+
+- `-t` - for Starcraft Terrain sounds
+- `-p` - for Starcraft Protoss sounds
+- `-z` - for Starcraft Zerg sounds
+
+Command with override could look like this:
+
+```bash
+sceptrefun -t launch-stack dev vpc
+```
 
 If you trust this project and want to stop typing `sceptrefun` everytime, put this in your `~/.zshrc` or `~/.bashrc`:
 
 ```bash
 alias `sceptre=/usr/local/bin/sceptrefun`
 ```
+
+## Roadmap
+
+- Record more sounds using co-workers' voices
+- Support more commands
+- Make it easier to add new sounds without changing the code
 
 ## More stuff
 
