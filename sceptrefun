@@ -6,71 +6,43 @@ realpath() {
 
 BASEDIR="$(dirname "$(dirname "$(realpath "$0")")")"
 
-SCEPTRE_SUCCESS="$BASEDIR/assets/war3_jobdone.mp3"
-SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/war3_jobdone.mp3"
-SCEPTRE_FAIL="$BASEDIR/assets/war3_jobfail.wav"
-SCEPTRE_INIT="$BASEDIR/assets/war3_workwork.mp3"
-MISSINGARGS="$BASEDIR/assets/war3_missingargs.wav"
-TRAPC="$BASEDIR/assets/war3_trapc.wav"
-ARGTOTAL=3
 SCEPTRE_HIJACK=$(which sceptre)
 
 AFPLAY_OPTS=( -v "${VOLUME:-0.2}" )
 
+ARGTOTAL=3
 SCEPTRE_ACTION=$1
 SCEPTRE_ENV=$2
 SCEPTRE_STACK=$3
 CHANGE_SET=$4
+THEME="orc"
 
-while getopts 'ztp' flag; do
-  case "${flag}" in
-    z)
-	    	ARGTOTAL=4
-		SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/star_z_jobupdate.wav"
-		SCEPTRE_DELETE_STACK="$BASEDIR/assets/star_z_jobdelete.wav"
-		SCEPTRE_SUCCESS="$BASEDIR/assets/star_z_jobdone.wav"
-		SCEPTRE_FAIL="$BASEDIR/assets/star_z_jobfail.wav"
-		SCEPTRE_INIT="$BASEDIR/assets/star_z_jobinit.wav"
-		MISSINGARGS="$BASEDIR/assets/star_z_missingargs.wav"
-		TRAPC="$BASEDIR/assets/star_z_trapc.wav"
-		SCEPTRE_ACTION=$2
-		SCEPTRE_ENV=$3
-		SCEPTRE_STACK=$4
-		CHANGE_SET=$5
-		;;
-    t)
-	    	ARGTOTAL=4
-		SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/star_t_jobupdate.wav"
-		SCEPTRE_DELETE_STACK="$BASEDIR/assets/star_t_jobdelete.wav"
-		SCEPTRE_SUCCESS="$BASEDIR/assets/star_t_jobdone.wav"
-		SCEPTRE_FAIL="$BASEDIR/assets/star_t_jobfail.wav"
-		SCEPTRE_INIT="$BASEDIR/assets/star_t_jobinit.wav"
-		MISSINGARGS="$BASEDIR/assets/star_t_missingargs.wav"
-		TRAPC="$BASEDIR/assets/star_t_trapc.wav"
-		SCEPTRE_ACTION=$2
-		SCEPTRE_ENV=$3
-		SCEPTRE_STACK=$4
-		CHANGE_SET=$5
-		;;
-    p)
-	    	ARGTOTAL=4
-		SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/star_p_jobupdate.wav"
-		SCEPTRE_DELETE_STACK="$BASEDIR/assets/star_p_jobdelete.wav"
-		SCEPTRE_SUCCESS="$BASEDIR/assets/star_p_jobdone.wav"
-		SCEPTRE_FAIL="$BASEDIR/assets/star_p_jobfail.wav"
-		SCEPTRE_INIT="$BASEDIR/assets/star_p_jobinit.wav"
-		MISSINGARGS="$BASEDIR/assets/star_p_missingargs.wav"
-		TRAPC="$BASEDIR/assets/star_p_trapc.wav"
-		SCEPTRE_ACTION=$2
-		SCEPTRE_ENV=$3
-		SCEPTRE_STACK=$4
-		CHANGE_SET=$5
-		;;
-    *)
-		exit 1
-		;;
-  esac
+while getopts "t:" OPTION
+do
+	case $OPTION in
+		t)
+			THEME="$OPTARG"
+			if [ ! -d "$BASEDIR/assets/$THEME" ]; then
+				echo -e '\033[1;33m'"'$THEME' theme does not exist" '\033[0m'
+				exit 1
+			fi
+			ARGTOTAL=5
+			SCEPTRE_ACTION=$3
+			SCEPTRE_ENV=$4
+			SCEPTRE_STACK=$5
+			CHANGE_SET=$6
+			;;
+	esac
 done
+
+SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/$THEME/jobupdate.mp3"
+SCEPTRE_DELETE_STACK="$BASEDIR/assets/$THEME/jobdelete.mp3"
+SCEPTRE_SUCCESS="$BASEDIR/assets/$THEME/jobdone.mp3"
+SCEPTRE_FAIL="$BASEDIR/assets/$THEME/jobfail.mp3"
+SCEPTRE_INIT="$BASEDIR/assets/$THEME/jobinit.mp3"
+MISSINGARGS="$BASEDIR/assets/$THEME/missingargs.mp3"
+TRAPC="$BASEDIR/assets/$THEME/trapc.mp3"
+
 
 trap trapctrlc SIGINT
 trapctrlc() {
@@ -78,8 +50,6 @@ trapctrlc() {
 	echo -e '\033[1;33m'"$USER has left the game" '\033[0m'
 	exit 1
 }
-
-# if [[ "$SCEPTRE_ACTION" == "delete-env" || "$SCEPTRE_ACTION" == "describe-env" || "$SCEPTRE_ACTION" == "launch-env" ]]
 
 REGEX="^.*-env$"
 if [[ "$SCEPTRE_ACTION" =~ $REGEX ]]
