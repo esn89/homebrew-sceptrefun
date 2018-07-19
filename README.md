@@ -47,7 +47,8 @@ alias `sceptre=/usr/local/bin/sceptrefun`
 
 - Record more sounds using co-workers' voices
 - Support more commands
-- Make it easier to add new sounds without changing the code
+- Refactor `sceptre` command handling
+- Convert `-t` parameter to environment variable
 
 ## More stuff
 
