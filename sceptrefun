@@ -11,6 +11,8 @@ TRAPC="$BASEDIR/assets/war3_trapc.wav"
 ARGTOTAL=3
 SCEPTRE_HIJACK=$(which sceptre)
 
+AFPLAY_OPTS=( -v "${VOLUME:-0.2}" )
+
 SCEPTRE_ACTION=$1
 SCEPTRE_ENV=$2
 SCEPTRE_STACK=$3
@@ -68,7 +70,7 @@ done
 
 trap trapctrlc SIGINT
 trapctrlc() {
-	mplayer -quiet "$TRAPC" > /dev/null 2>&1
+	afplay "${AFPLAY_OPTS[@]}" "$TRAPC"
 	echo -e '\033[1;33m'"$USER has left the game" '\033[0m'
 	exit 1
 }
@@ -83,14 +85,14 @@ then
 		SCEPTRE_INIT=$SCEPTRE_DELETE_STACK
 	fi
 
-	mplayer -quiet "$SCEPTRE_INIT" > /dev/null 2>&1
+	afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_INIT"
 
 	if "$SCEPTRE_HIJACK" "$SCEPTRE_ACTION" "$SCEPTRE_ENV";
 	then
-		mplayer -quiet "$SCEPTRE_SUCCESS" > /dev/null 2>&1
+		afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_SUCCESS"
 		exit 0
 	else
-		mplayer -quiet "$SCEPTRE_FAIL" > /dev/null 2>&1
+		afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_FAIL"
 		exit 1
 	fi
 fi
@@ -98,14 +100,14 @@ fi
 if [[ "$SCEPTRE_ACTION" == "create-change-set" || "$SCEPTRE_ACTION" == "describe-change-set" ]]
 then
 	ARGTOTAL=$((ARGTOTAL + 1))
-	mplayer -quiet "$SCEPTRE_INIT" > /dev/null 2>&1
+	afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_INIT"
 
 	if "$SCEPTRE_HIJACK" "$SCEPTRE_ACTION" "$SCEPTRE_ENV" "$SCEPTRE_STACK" "$CHANGE_SET";
 	then
-		mplayer -quiet "$SCEPTRE_SUCCESS" > /dev/null 2>&1
+		afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_SUCCESS"
 		exit 0
 	else
-		mplayer -quiet "$SCEPTRE_FAIL" > /dev/null 2>&1
+		afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_FAIL"
 		exit 1
 	fi
 fi
@@ -124,16 +126,15 @@ esac
 if [[ $# -ne "$ARGTOTAL" ]];
 then
 	echo "Missing/too many parameters"
-	mplayer -quiet "$MISSINGARGS" > /dev/null 2>&1
+	afplay "${AFPLAY_OPTS[@]}" "$MISSINGARGS"
 	exit 1
 fi
 
-mplayer -quiet "$SCEPTRE_INIT" > /dev/null 2>&1
+afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_INIT"
 if "$SCEPTRE_HIJACK" "$SCEPTRE_ACTION" "$SCEPTRE_ENV" "$SCEPTRE_STACK";
 then
-	mplayer -quiet "$SCEPTRE_SUCCESS" > /dev/null 2>&1
+	afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_SUCCESS"
 else
-	mplayer -quiet "$SCEPTRE_FAIL" > /dev/null 2>&1
+	afplay "${AFPLAY_OPTS[@]}" "$SCEPTRE_FAIL"
 	exit 1
 fi
-
