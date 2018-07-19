@@ -1,11 +1,17 @@
 #!/bin/bash
 
-SCEPTRE_SUCCESS="$HOME/Downloads/assets/war3_jobdone.mp3"
-SCEPTRE_UPGRADE_STACK="$HOME/Downloads/assets/war3_jobdone.mp3"
-SCEPTRE_FAIL="$HOME/Downloads/assets/war3_jobfail.wav"
-SCEPTRE_INIT="$HOME/Downloads/assets/war3_workwork.mp3"
-MISSINGARGS="$HOME/Downloads/assets/war3_missingargs.wav"
-TRAPC="$HOME/Downloads/assets/war3_trapc.wav"
+if [ -L $0 ] ; then
+    BASEDIR=$(cd "$(dirname "$(readlink $0)")"; pwd -P) # for symbolic link
+else
+    BASEDIR=$(cd "$(dirname "$0")"; pwd -P) # for normal file
+fi
+
+SCEPTRE_SUCCESS="$BASEDIR/assets/war3_jobdone.mp3"
+SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/war3_jobdone.mp3"
+SCEPTRE_FAIL="$BASEDIR/assets/war3_jobfail.wav"
+SCEPTRE_INIT="$BASEDIR/assets/war3_workwork.mp3"
+MISSINGARGS="$BASEDIR/assets/war3_missingargs.wav"
+TRAPC="$BASEDIR/assets/war3_trapc.wav"
 ARGTOTAL=3
 SCEPTRE_HIJACK=$(which sceptre)
 
@@ -18,13 +24,13 @@ while getopts 'ztp' flag; do
   case "${flag}" in
     z)
 	    	ARGTOTAL=4
-		SCEPTRE_UPGRADE_STACK="$HOME/Downloads/assets/star_z_jobupdate.wav"
-		SCEPTRE_DELETE_STACK="$HOME/Downloads/assets/star_z_jobdelete.wav"
-		SCEPTRE_SUCCESS="$HOME/Downloads/assets/star_z_jobdone.wav"
-		SCEPTRE_FAIL="$HOME/Downloads/assets/star_z_jobfail.wav"
-		SCEPTRE_INIT="$HOME/Downloads/assets/star_z_jobinit.wav"
-		MISSINGARGS="$HOME/Downloads/assets/star_z_missingargs.wav"
-		TRAPC="$HOME/Downloads/assets/star_z_trapc.wav"
+		SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/star_z_jobupdate.wav"
+		SCEPTRE_DELETE_STACK="$BASEDIR/assets/star_z_jobdelete.wav"
+		SCEPTRE_SUCCESS="$BASEDIR/assets/star_z_jobdone.wav"
+		SCEPTRE_FAIL="$BASEDIR/assets/star_z_jobfail.wav"
+		SCEPTRE_INIT="$BASEDIR/assets/star_z_jobinit.wav"
+		MISSINGARGS="$BASEDIR/assets/star_z_missingargs.wav"
+		TRAPC="$BASEDIR/assets/star_z_trapc.wav"
 		SCEPTRE_ACTION=$2
 		SCEPTRE_ENV=$3
 		SCEPTRE_STACK=$4
@@ -32,13 +38,13 @@ while getopts 'ztp' flag; do
 		;;
     t)
 	    	ARGTOTAL=4
-		SCEPTRE_UPGRADE_STACK="$HOME/Downloads/assets/star_t_jobupdate.wav"
-		SCEPTRE_DELETE_STACK="$HOME/Downloads/assets/star_t_jobdelete.wav"
-		SCEPTRE_SUCCESS="$HOME/Downloads/assets/star_t_jobdone.wav"
-		SCEPTRE_FAIL="$HOME/Downloads/assets/star_t_jobfail.wav"
-		SCEPTRE_INIT="$HOME/Downloads/assets/star_t_jobinit.wav"
-		MISSINGARGS="$HOME/Downloads/assets/star_t_missingargs.wav"
-		TRAPC="$HOME/Downloads/assets/star_t_trapc.wav"
+		SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/star_t_jobupdate.wav"
+		SCEPTRE_DELETE_STACK="$BASEDIR/assets/star_t_jobdelete.wav"
+		SCEPTRE_SUCCESS="$BASEDIR/assets/star_t_jobdone.wav"
+		SCEPTRE_FAIL="$BASEDIR/assets/star_t_jobfail.wav"
+		SCEPTRE_INIT="$BASEDIR/assets/star_t_jobinit.wav"
+		MISSINGARGS="$BASEDIR/assets/star_t_missingargs.wav"
+		TRAPC="$BASEDIR/assets/star_t_trapc.wav"
 		SCEPTRE_ACTION=$2
 		SCEPTRE_ENV=$3
 		SCEPTRE_STACK=$4
@@ -46,13 +52,13 @@ while getopts 'ztp' flag; do
 		;;
     p)
 	    	ARGTOTAL=4
-		SCEPTRE_UPGRADE_STACK="$HOME/Downloads/assets/star_p_jobupdate.wav"
-		SCEPTRE_DELETE_STACK="$HOME/Downloads/assets/star_p_jobdelete.wav"
-		SCEPTRE_SUCCESS="$HOME/Downloads/assets/star_p_jobdone.wav"
-		SCEPTRE_FAIL="$HOME/Downloads/assets/star_p_jobfail.wav"
-		SCEPTRE_INIT="$HOME/Downloads/assets/star_p_jobinit.wav"
-		MISSINGARGS="$HOME/Downloads/assets/star_p_missingargs.wav"
-		TRAPC="$HOME/Downloads/assets/star_p_trapc.wav"
+		SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/star_p_jobupdate.wav"
+		SCEPTRE_DELETE_STACK="$BASEDIR/assets/star_p_jobdelete.wav"
+		SCEPTRE_SUCCESS="$BASEDIR/assets/star_p_jobdone.wav"
+		SCEPTRE_FAIL="$BASEDIR/assets/star_p_jobfail.wav"
+		SCEPTRE_INIT="$BASEDIR/assets/star_p_jobinit.wav"
+		MISSINGARGS="$BASEDIR/assets/star_p_missingargs.wav"
+		TRAPC="$BASEDIR/assets/star_p_trapc.wav"
 		SCEPTRE_ACTION=$2
 		SCEPTRE_ENV=$3
 		SCEPTRE_STACK=$4
