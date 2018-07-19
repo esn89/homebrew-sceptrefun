@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASEDIR=$(dirname "$0")
+BASEDIR=$(cd "$(dirname "$(dirname "$(greadlink -f $0)")")" && pwd)
 
 SCEPTRE_SUCCESS="$BASEDIR/assets/war3_jobdone.mp3"
 SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/war3_jobdone.mp3"
