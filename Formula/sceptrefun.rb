@@ -1,8 +1,8 @@
 class Sceptrefun < Formula
     desc "Sceptre Fun with sounds"
     homepage "https://github.com/esn89/homebrew-sceptrefun"
-    url "https://github.com/esn89/homebrew-sceptrefun/archive/v0.0.3.tar.gz"
-    sha256 "ba4f4ee019a391951780621e0b0d855e9cc77f3189b51358cc02e97dec002144"
+    url "https://github.com/esn89/homebrew-sceptrefun/archive/v0.0.4.tar.gz"
+    sha256 "e746d59949127afc98a2a34322b1de9bfece2ec4d3f7b55ccc95d1eb3aa85ea6"
   
     bottle do
         cellar :any_skip_relocation
