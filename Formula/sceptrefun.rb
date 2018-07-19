@@ -1,6 +1,4 @@
 class Sceptrefun < Formula
-    include Language::Python::Virtualenv
-  
     desc "Sceptre Fun with sounds"
     homepage "https://github.com/esn89/homebrew-sceptrefun"
     url "https://github.com/esn89/homebrew-sceptrefun/archive/v0.0.1.tar.gz"
@@ -14,7 +12,7 @@ class Sceptrefun < Formula
   
     def install
         bin.install "sceptrefun"
-        assets.install "assets/*"
+        prefix.install Dir["assets/*"]
     end
   
     test do
