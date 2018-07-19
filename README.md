@@ -4,9 +4,10 @@ This project is a wrapper extension to Cloudreach's `sceptre` tool. It plays dif
 
 ## Dependencies
 
-- `mplayer` - installed automatically by brew
-- `coreutils` - installed automatically by brew
-- `sceptre` - you should have it set up already on your computer
+You should have the following components to be set up:
+
+- `python`
+- `sceptre`
 
 ## How to install
 
