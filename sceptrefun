@@ -71,6 +71,28 @@ trapctrlc() {
 	exit 1
 }
 
+# if [[ "$SCEPTRE_ACTION" == "delete-env" || "$SCEPTRE_ACTION" == "describe-env" || "$SCEPTRE_ACTION" == "launch-env" ]]
+
+REGEX="^.*-env$"
+if [[ "$SCEPTRE_ACTION" =~ $REGEX ]]
+then
+	if [[ $SCEPTRE_ACTION == "delete-env" ]]
+	then
+		SCEPTRE_INIT=$SCEPTRE_DELETE_STACK
+	fi
+
+	mplayer -quiet "$SCEPTRE_INIT" > /dev/null 2>&1
+
+	if "$SCEPTRE_HIJACK" "$SCEPTRE_ACTION" "$SCEPTRE_ENV";
+	then
+		mplayer -quiet "$SCEPTRE_SUCCESS" > /dev/null 2>&1
+		exit 0
+	else
+		mplayer -quiet "$SCEPTRE_FAIL" > /dev/null 2>&1
+		exit 1
+	fi
+fi
+
 if [[ "$SCEPTRE_ACTION" == "create-change-set" || "$SCEPTRE_ACTION" == "describe-change-set" ]]
 then
 	ARGTOTAL=$((ARGTOTAL + 1))
@@ -84,15 +106,8 @@ then
 		mplayer -quiet "$SCEPTRE_FAIL" > /dev/null 2>&1
 		exit 1
 	fi
-
 fi
 
-if [[ $# -ne "$ARGTOTAL" ]];
-then
-	echo "Missing/too many parameters"
-	mplayer -quiet "$MISSINGARGS" > /dev/null 2>&1
-	exit 1
-fi
 
 case $SCEPTRE_ACTION in
 	update-stack|update-stack-cs)
@@ -104,6 +119,12 @@ case $SCEPTRE_ACTION in
 		;;
 esac
 
+if [[ $# -ne "$ARGTOTAL" ]];
+then
+	echo "Missing/too many parameters"
+	mplayer -quiet "$MISSINGARGS" > /dev/null 2>&1
+	exit 1
+fi
 
 mplayer -quiet "$SCEPTRE_INIT" > /dev/null 2>&1
 if "$SCEPTRE_HIJACK" "$SCEPTRE_ACTION" "$SCEPTRE_ENV" "$SCEPTRE_STACK";
