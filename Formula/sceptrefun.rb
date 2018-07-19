@@ -13,7 +13,7 @@ class Sceptrefun < Formula
     depends_on "mplayer"
   
     def install
-        system "echo", "done"
+        bin.install "sceptrefun"
     end
   
     test do
