@@ -1,4 +1,4 @@
-class SceptreFun < Formula
+class Sceptrefun < Formula
     include Language::Python::Virtualenv
   
     desc "Sceptre Fun with sounds"
