@@ -38,6 +38,8 @@ export SCEPTRE_THEME="terran"
 sceptrefun launch-stack dev vpc
 ```
 
+If you want to add additional sound themes, just create a new folder in `/usr/local/Cellar/sceptrefun/{version}/assets` and add required `.mp3` files.
+
 If you trust this project and want to stop typing `sceptrefun` everytime, put this in your `~/.zshrc` or `~/.bashrc`:
 
 ```bash
