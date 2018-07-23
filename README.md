@@ -25,16 +25,17 @@ Run it the same way you would run `sceptre`:
 sceptrefun $action $env $stack
 ```
 
-By default it uses Warcraft sounds, but you can override this behaviour using additional `-t` flag:
+By default it uses Warcraft sounds, but you can override this behaviour using `SCEPTRE_THEME` environment variable, just run one of the following commands:
 
-- `-t terran` - for Starcraft Terrain sounds
-- `-t protoss` - for Starcraft Protoss sounds
-- `-t zerg` - for Starcraft Zerg sounds
+- `export SCEPTRE_THEME="terran"` - for Starcraft Terran sounds
+- `export SCEPTRE_THEME="protoss"` - for Starcraft Protoss sounds
+- `export SCEPTRE_THEME="zerg"` - for Starcraft Zerg sounds
 
 Command with override could look like this:
 
 ```bash
-sceptrefun -t terran launch-stack dev vpc
+export SCEPTRE_THEME="terran"
+sceptrefun launch-stack dev vpc
 ```
 
 If you trust this project and want to stop typing `sceptrefun` everytime, put this in your `~/.zshrc` or `~/.bashrc`:

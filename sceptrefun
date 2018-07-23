@@ -15,34 +15,21 @@ SCEPTRE_ACTION=$1
 SCEPTRE_ENV=$2
 SCEPTRE_STACK=$3
 CHANGE_SET=$4
-THEME="orc"
+SCEPTRE_THEME_DEFAULT="orc"
+SCEPTRE_THEME=${SCEPTRE_THEME-$SCEPTRE_THEME_DEFAULT}
 
-while getopts "t:" OPTION
-do
-	case $OPTION in
-		t)
-			THEME="$OPTARG"
-			if [ ! -d "$BASEDIR/assets/$THEME" ]; then
-				echo -e '\033[1;33m'"'$THEME' theme does not exist" '\033[0m'
-				exit 1
-			fi
-			ARGTOTAL=5
-			SCEPTRE_ACTION=$3
-			SCEPTRE_ENV=$4
-			SCEPTRE_STACK=$5
-			CHANGE_SET=$6
-			;;
-	esac
-done
+if [ ! -d "$BASEDIR/assets/$SCEPTRE_THEME" ]; then
+	echo -e '\033[1;33m'"'$SCEPTRE_THEME' theme does not exist, will use default '$SCEPTRE_THEME_DEFAULT' theme" '\033[0m'
+	SCEPTRE_THEME=$SCEPTRE_THEME_DEFAULT
+fi
 
-SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/$THEME/jobupdate.mp3"
-SCEPTRE_DELETE_STACK="$BASEDIR/assets/$THEME/jobdelete.mp3"
-SCEPTRE_SUCCESS="$BASEDIR/assets/$THEME/jobdone.mp3"
-SCEPTRE_FAIL="$BASEDIR/assets/$THEME/jobfail.mp3"
-SCEPTRE_INIT="$BASEDIR/assets/$THEME/jobinit.mp3"
-MISSINGARGS="$BASEDIR/assets/$THEME/missingargs.mp3"
-TRAPC="$BASEDIR/assets/$THEME/trapc.mp3"
-
+SCEPTRE_UPGRADE_STACK="$BASEDIR/assets/$SCEPTRE_THEME/jobupdate.mp3"
+SCEPTRE_DELETE_STACK="$BASEDIR/assets/$SCEPTRE_THEME/jobdelete.mp3"
+SCEPTRE_SUCCESS="$BASEDIR/assets/$SCEPTRE_THEME/jobdone.mp3"
+SCEPTRE_FAIL="$BASEDIR/assets/$SCEPTRE_THEME/jobfail.mp3"
+SCEPTRE_INIT="$BASEDIR/assets/$SCEPTRE_THEME/jobinit.mp3"
+MISSINGARGS="$BASEDIR/assets/$SCEPTRE_THEME/missingargs.mp3"
+TRAPC="$BASEDIR/assets/$SCEPTRE_THEME/trapc.mp3"
 
 trap trapctrlc SIGINT
 trapctrlc() {
